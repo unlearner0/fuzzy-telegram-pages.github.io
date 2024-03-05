@@ -1,41 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Bar</title>
-    <style>
-        /* Some basic styling for the search bar */
-        .search-container {
-            margin-top: 50px;
-            text-align: center;
-        }
-        input[type=text] {
-            width: 50%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-        }
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <title>Random Refresher</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Random information on the internet">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://source.unsplash.com/random">
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: url('https://source.unsplash.com/random') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Add your other CSS styles here */
+
+  </style>
 </head>
 <body>
+  <div id="randomNavbar">
+    <span id="randomRefresh">Random Refresher</span>
+    <button onclick="redirectToRandomWebsite(videoWebsites)">Video</button>
+    <button onclick="redirectToRandomWebsite(musicWebsites)">Music</button>
+    <button onclick="redirectToRandomWebsite(pageWebsites)">Page</button>
+  </div>
+  <div id="randomContent"></div>
 
-<div class="search-container">
-    <form action="/search" method="get">
-        <input type="text" placeholder="Search.." name="search">
-        <input type="submit" value="Search">
-    </form>
-</div>
+  <script>
+    const videoWebsites = [
+      'https://www.youtube.com/',
+      // Add more video website URLs here
+    ];
 
+    const musicWebsites = [
+      'https://open.spotify.com/',
+      // Add more music website URLs here
+    ];
+
+    const pageWebsites = [
+      'https://www.miniclip.com/games/en/',
+      // Add more page website URLs here
+    ];
+
+    const sentences = [
+      // Add your list of random sentences here
+    ];
+
+    function getRandomColor() {
+      return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+    }
+
+    function applyRandomFont() {
+      const fonts = [
+        'Arial, sans-serif',
+        'Times New Roman, serif',
+        // Add more font families here
+      ];
+      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+      document.getElementById('randomContent').style.fontFamily = randomFont;
+    }
+
+    function redirectToRandomWebsite(websites) {
+      const randomWebsite = websites[Math.floor(Math.random() * websites.length)];
+      window.location.href = randomWebsite;
+    }
+
+    function displayRandomSentence() {
+      const randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+      const randomContentElement = document.getElementById('randomContent');
+      randomContentElement.innerText = randomSentence;
+      randomContentElement.style.color = getRandomColor();
+      applyRandomFont();
+    }
+
+    const randomNavbarElement = document.getElementById('randomNavbar');
+    randomNavbarElement.style.backgroundColor = getRandomColor();
+
+    displayRandomSentence();
+  </script>
 </body>
 </html>
